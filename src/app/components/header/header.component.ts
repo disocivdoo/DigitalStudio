@@ -9,7 +9,7 @@ import { ScrollService } from '../../services/scroll.service';
   imports: [CommonModule, RouterModule],
   template: `
     <header [class]="headerClass">
-      <nav class="container mx-auto px-4 py-4">
+      <nav class="container mx-auto px-4 py-4 relative">
         <div class="flex justify-between items-center">
           <div class="text-2xl font-bold text-gold">
             <span class="text-white">Digital</span>Studio
@@ -38,13 +38,14 @@ import { ScrollService } from '../../services/scroll.service';
         </div>
 
         <!-- Mobile menu panel -->
-        <div class="md:hidden" [class.hidden]="!isMenuOpen">
-          <ul class="pt-4 space-y-4">
-            <li><a (click)="onSectionClick('home', $event)" class="nav-link block">Inicio</a></li>
-            <li><a (click)="onSectionClick('services', $event)" class="nav-link block">Servicios</a></li>
-            <li><a (click)="onSectionClick('portfolio', $event)" class="nav-link block">Portafolio</a></li>
-            <li><a (click)="onSectionClick('about', $event)" class="nav-link block">Sobre Nosotros</a></li>
-            <li><a (click)="onSectionClick('contact', $event)" class="nav-link block">Contacto</a></li>
+        <div class="md:hidden absolute left-0 right-0 bg-black bg-opacity-95 mt-4 px-4 py-2 rounded-lg shadow-lg"
+             [class.hidden]="!isMenuOpen">
+          <ul class="space-y-4">
+            <li><a (click)="onSectionClick('home', $event)" class="nav-link block py-2">Inicio</a></li>
+            <li><a (click)="onSectionClick('services', $event)" class="nav-link block py-2">Servicios</a></li>
+            <li><a (click)="onSectionClick('portfolio', $event)" class="nav-link block py-2">Portafolio</a></li>
+            <li><a (click)="onSectionClick('about', $event)" class="nav-link block py-2">Sobre Nosotros</a></li>
+            <li><a (click)="onSectionClick('contact', $event)" class="nav-link block py-2">Contacto</a></li>
           </ul>
         </div>
       </nav>
@@ -54,6 +55,11 @@ import { ScrollService } from '../../services/scroll.service';
     :host {
       display: block;
       width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
     }
 
     .nav-link {
@@ -61,12 +67,12 @@ import { ScrollService } from '../../services/scroll.service';
     }
 
     .header-scrolled {
-      @apply fixed w-full bg-black shadow-lg transition-all duration-300 ease-in-out z-50;
+      @apply w-full bg-black shadow-lg transition-all duration-300 ease-in-out;
       background-color: rgba(0, 0, 0, 0.9);
     }
 
     .header-top {
-      @apply fixed w-full transition-all duration-300 ease-in-out z-50;
+      @apply w-full transition-all duration-300 ease-in-out;
       background-color: rgba(0, 0, 0, 0.3);
     }
   `]
